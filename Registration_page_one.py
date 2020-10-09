@@ -40,7 +40,8 @@ root.iconphoto(FALSE, tk.PhotoImage(file='icons8-registration-50.png'))
 top = Frame(root, height=60, bg='gray')
 top.pack(fill=X)
 
-add_lbl = Label(top, text=' Registration  ', bg='skyblue', font=('Segoe Print bold', 30), background='gray')
+add_lbl = Label(top, text=' Registration  ', bg='skyblue',
+                font=('Segoe Print bold', 30), background='gray')
 add_lbl.place(x=250, y=-13)
 
 down = Frame(root, height=550, bg='skyblue')
@@ -69,6 +70,8 @@ rb_lbl.place(x=140, y=190)
 
 selected = StringVar(down)
 selected.set('Female')
+
+# get selected item ()
 
 
 def get_selected():
@@ -106,7 +109,8 @@ opt_month.config(width=5, font=('Helvetica', 12))
 opt_month.place(x=355, y=240)
 
 # Year
-current_year = datetime.datetime.now().year  # Get current year into current_year
+# Get current year into current_year
+current_year = datetime.datetime.now().year
 year_veriable = StringVar(down)
 year_veriable.set('Year')
 opt_year = OptionMenu(down, year_veriable, *range(1990, current_year))
@@ -125,15 +129,18 @@ add_entry.place(x=270, y=300)
 # ===========================================================================================
 var = IntVar()
 var.set(0)
-cbn = Checkbutton(down, variable=var, text='I accept term and condition ', bg='skyblue', font='console')
+cbn = Checkbutton(down, variable=var,
+                  text='I accept term and condition ', bg='skyblue', font='console')
 cbn.place(x=140, y=450)
 
 addres = StringVar()
 
 
+# validate inputdata
 def validation():
     if var.get() == 0:
-        messagebox.showinfo('Error', "Plese select terms and condition to proceed..", icon='error')
+        messagebox.showinfo(
+            'Error', "Plese select terms and condition to proceed..", icon='error')
     elif name_entry.get() == '':
         messagebox.showinfo('error', 'name can not be empty')
 
@@ -145,7 +152,6 @@ def validation():
 
     elif add_entry.get(1.0, END) == '\n':
         messagebox.showinfo('error', 'Adress can not be empty ')
-
 
     else:
         return TRUE
@@ -160,6 +166,8 @@ def clear():
     add_entry.delete(1.0, END)
     name_entry.delete(0, END)
     name_entry.focus_set()
+
+# save
 
 
 def save():
@@ -185,9 +193,11 @@ def save():
         clear()
         messagebox.showinfo("saved", "registration completed", icon='info')
 
+
 add = PhotoImage(file=r"add.png")
 photoimage = add.subsample(4, 4)
-save = Button(down, text="Register  ",image=photoimage, compound=LEFT, font='console', command=save)
+save = Button(down, text="Register me ", image=photoimage,
+              compound=LEFT, font='console', command=save)
 save.place(x=350, y=500)
 
 mainloop()
